@@ -4,8 +4,9 @@ import { createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import Map from './src/components/Map.js';
+import Map from './src/components/Map';
 import Data from './src/components/Data';
+import Form from './src/components/Form';
 
 console.disableYellowBox = true;
 
@@ -29,7 +30,17 @@ class MapScreen extends React.Component {
   }
 }
 
-class SettingScreen extends React.Component {
+class FormScreen extends React.Component {
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        <Form />
+      </ScrollView>
+    )
+  }
+}
+
+class HistoryScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -65,17 +76,30 @@ const TabNavigator = createMaterialBottomTabNavigator(
         barStyle: { backgroundColor: '#d13560' },
       }
     },
-    Setting: {
-      screen: SettingScreen,
+    Form: {
+      screen: FormScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'cog'} />
+            <Icon style={[{ color: tintColor }]} size={25} name={'file'} />
           </View>
         ),
         activeColor: '#ffffff',
         inactiveColor: '#92c5c2',
         barStyle: { backgroundColor: '#2c6d6a' },
+      }
+    },
+    Hstory: {
+      screen: HistoryScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View>
+            <Icon style={[{ color: tintColor }]} size={25} name={'list'} />
+          </View>
+        ),
+        activeColor: '#ffffff',
+        inactiveColor: '#ffb780',
+        barStyle: { backgroundColor: '#f58027' },
       }
     },
   },
