@@ -7,6 +7,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import Map from './src/components/Map';
 import Data from './src/components/Data';
 import Form from './src/components/Form';
+import History from './src/components/History';
 
 console.disableYellowBox = true;
 
@@ -43,9 +44,9 @@ class FormScreen extends React.Component {
 class HistoryScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-
-      </View>
+      <ScrollView style={styles.container}>
+        <History />
+      </ScrollView>
     )
   }
 }

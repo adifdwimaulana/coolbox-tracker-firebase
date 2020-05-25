@@ -25,17 +25,28 @@ class Form extends React.Component {
         const hour = new Date().getHours();
         const minute = new Date().getMinutes();
         const second = new Date().getSeconds();
-        const currentTime = hour + ':' + minute + ':' + second;
+        const finish = hour + ':' + minute + ':' + second;
+        const start = this.state.start;
         console.log(medicine)
         console.log(description)
         console.log(temperature)
         console.log(destination)
         console.log(currentDate)
-        console.log(currentTime)
+        console.log(finish)
+        console.log(start)
 
         // Push Data to Firebase
+        root.ref('/delivery').push({
+            medicine,
+            description,
+            temperature,
+            destination,
+            start,
+            finish,
+            currentDate
+        })
 
-        this.setState({ isFinish: false, medicine: '', description: '', temperature: '', destination: '' })
+        this.setState({ isFinish: false, medicine: null, description: null, temperature: null, destination: null })
     }
 
     handleForm(medicine, description, temperature, destination) {
@@ -51,10 +62,6 @@ class Form extends React.Component {
 
         this.setState({ isFinish: true, start: currentTime })
     }
-
-    // handleForm() {
-    //     this.setState({ isFinish: true })
-    // }
 
     render() {
         const { medicine, description, destination, temperature, isFinish } = this.state;
