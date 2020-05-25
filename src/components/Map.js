@@ -19,7 +19,7 @@ class Map extends React.Component {
     }
 
     componentDidMount() {
-        root.ref('/').on('value', (snap) => {
+        root.ref('/location').on('value', (snap) => {
             console.log(snap.val());
             this.setState({
                 data: snap.val()
