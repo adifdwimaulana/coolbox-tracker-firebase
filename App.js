@@ -99,8 +99,8 @@ const TabNavigator = createMaterialBottomTabNavigator(
           </View>
         ),
         activeColor: '#ffffff',
-        inactiveColor: '#ffb780',
-        barStyle: { backgroundColor: '#f58027' },
+        inactiveColor: '#5073b5',
+        barStyle: { backgroundColor: '#2a5ebf' },
       }
     },
   },
