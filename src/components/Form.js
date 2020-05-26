@@ -17,6 +17,13 @@ class Form extends React.Component {
         }
     }
 
+    componentDidMount() {
+        root.ref('/isFinish/bool').on('value', (snap) => {
+            console.log(snap.val());
+            this.setState({ isFinish: snap.val() })
+        });
+    }
+
     finishTrack(medicine, description, temperature, destination) {
         const date = new Date().getDate();
         const month = new Date().getMonth();
@@ -46,7 +53,11 @@ class Form extends React.Component {
             currentDate
         })
 
-        this.setState({ isFinish: false, medicine: null, description: null, temperature: null, destination: null })
+        root.ref('/isFinish').set({
+            bool: false
+        })
+
+        this.setState({ medicine: null, description: null, temperature: null, destination: null })
     }
 
     handleForm(medicine, description, temperature, destination) {
@@ -60,7 +71,11 @@ class Form extends React.Component {
         console.log(destination)
         console.log(currentTime)
 
-        this.setState({ isFinish: true, start: currentTime })
+        root.ref('/isFinish').set({
+            bool: true
+        })
+
+        this.setState({ start: currentTime })
     }
 
     render() {

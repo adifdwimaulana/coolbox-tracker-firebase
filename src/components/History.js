@@ -16,14 +16,10 @@ class History extends React.Component {
     componentDidMount() {
         root.ref('/delivery').on('value', (snap) => {
             historyData = []
-            // let buffArray = []
             snap.forEach((item) => {
                 let itemVal = item.val();
                 let itemKey = item.key;
                 Object.assign(itemVal, { key: itemKey })
-                // buffArray.push(itemVal)
-                // buffArray.push(itemKey)
-                // console.log(buffArray)
                 historyData.push(itemVal);
                 // console.log(historyData)
                 this.setState({ data: historyData })
