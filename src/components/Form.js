@@ -18,9 +18,18 @@ class Form extends React.Component {
     }
 
     componentDidMount() {
-        root.ref('/isFinish/bool').on('value', (snap) => {
+        root.ref('/isFinish').on('value', (snap) => {
             console.log(snap.val());
-            this.setState({ isFinish: snap.val() })
+            this.setState({
+                isFinish: snap.val().bool,
+                medicine: snap.val().medicine,
+                description: snap.val().description,
+                temperature: snap.val().temperature,
+                destination: snap.val().destination,
+                start: snap.val().start,
+                finish: snap.val().finish,
+                currentDate: snap.val().currentDate,
+            })
         });
     }
 
@@ -54,7 +63,14 @@ class Form extends React.Component {
         })
 
         root.ref('/isFinish').set({
-            bool: false
+            bool: false,
+            medicine: medicine,
+            description: description,
+            temperature: temperature,
+            destination: destination,
+            start: start,
+            finish: finish,
+            currentDate: currentDate
         })
 
         this.setState({ medicine: null, description: null, temperature: null, destination: null })
@@ -72,7 +88,14 @@ class Form extends React.Component {
         console.log(currentTime)
 
         root.ref('/isFinish').set({
-            bool: true
+            bool: true,
+            medicine: medicine,
+            description: description,
+            temperature: temperature,
+            destination: destination,
+            start: currentTime,
+            finish: null,
+            currentDate: null
         })
 
         this.setState({ start: currentTime })
