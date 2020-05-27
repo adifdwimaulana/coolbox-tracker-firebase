@@ -35,37 +35,34 @@ class History extends React.Component {
     render() {
         const historyList = this.state.data.map((item) => {
             return (
-                <>
-                    <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 15, marginBottom: 15 }}>
-                        <View style={{ flexDirection: 'column', flex: 1 }}>
-                            <View style={{ backgroundColor: '#0c25c9', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopLeftRadius: 7, borderTopRightRadius: 7 }}>
-                                <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>{item.destination}</Text>
-                                <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingRight: 8, marginTop: -20, textAlign: 'right' }}>{item.currentDate}</Text>
-                            </View>
-                            <View style={{ backgroundColor: '#394fe3', height: 160, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, borderBottomLeftRadius: 7 }}>
-                                <View style={{ marginHorizontal: 17, marginTop: 6 }}>
-                                    <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1, fontWeight: 'bold' }}>{item.medicine}</Text>
-                                    <Text style={{ fontSize: 14, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify', marginTop: 6 }}>{item.description}</Text>
-
-                                </View>
-                                <View style={{ flex: 1, justifyContent: "flex-end", marginBottom: 14 }}>
-                                    <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify' }}>Pengiriman : {item.start}</Text>
-                                    <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify', marginTop: 2 }}>Sampai : {item.finish}</Text>
-                                </View>
-                                <View style={{ flex: 1, flexDirection: 'column', justifyContent: "flex-end", marginBottom: 14, marginRight: -140 }}>
-                                    <TouchableOpacity
-                                        style={{ flexDirection: "row" }}
-                                        onPress={() => this.deleteHistory(item)}
-                                    >
-                                        <Icon name="trash" size={14} color='#fff' />
-                                        <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'right' }}>DELETE</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-
+                <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 15, marginBottom: 15 }}>
+                    <View style={{ flexDirection: 'column', flex: 1 }}>
+                        <View style={{ backgroundColor: '#0c25c9', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopLeftRadius: 7, borderTopRightRadius: 7 }}>
+                            <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>{item.destination}</Text>
+                            <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingRight: 8, marginTop: -20, textAlign: 'right' }}>{item.currentDate}</Text>
                         </View>
+                        <View style={{ backgroundColor: '#394fe3', height: 160, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, borderBottomLeftRadius: 7 }}>
+                            <View style={{ marginHorizontal: 17, marginTop: 6 }}>
+                                <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1, fontWeight: 'bold' }}>{item.medicine}</Text>
+                                <Text style={{ fontSize: 14, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify', marginTop: 6 }}>{item.description}</Text>
+                            </View>
+                            <View style={{ flex: 1, justifyContent: "flex-end", marginBottom: 14 }}>
+                                <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify' }}>Pengiriman : {item.start}</Text>
+                                <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify', marginTop: 2 }}>Sampai : {item.finish}</Text>
+                            </View>
+                            <View style={{ flex: 1, flexDirection: 'column', justifyContent: "flex-end", marginBottom: 14, marginRight: -140 }}>
+                                <TouchableOpacity
+                                    style={{ flexDirection: "row" }}
+                                    onPress={() => this.deleteHistory(item)}
+                                >
+                                    <Icon name="trash" size={14} color='#fff' />
+                                    <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'right' }}>DELETE</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
                     </View>
-                </>
+                </View>
             )
         })
 
