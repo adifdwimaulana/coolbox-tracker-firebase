@@ -2,6 +2,29 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { root } from '../config';
 
+const hospitals = [
+    { id: 1, name: 'RS Premier Surabaya' },
+    { id: 2, name: 'RS Onkologi Surabaya' },
+    { id: 3, name: 'RS Univ. Airlangga' },
+    { id: 4, name: 'RS Orthopedi & Traumatologi' },
+    { id: 5, name: 'RS Mitra Keluarga Kenjeran' },
+    { id: 6, name: 'RS Mitra Keluarga Surabaya' },
+    { id: 7, name: 'RSAL Surabaya' },
+];
+
+const meidicines = [
+    { id: 1, name: 'Transport of pre-processed blood' },
+    { id: 2, name: 'Storage of pre-processed/processed blood' },
+    { id: 3, name: 'Transport of processed bloo' },
+    { id: 4, name: 'Fresh Frozen Plasma' },
+    { id: 5, name: 'Oral Polio Virus' },
+    { id: 6, name: 'Hib(liquid)' },
+    { id: 7, name: 'Rotavirus' },
+    { id: 8, name: 'Hepatitis B Vaccine' },
+    { id: 9, name: 'Cholera' },
+    { id: 10, name: 'RHuman Papillomavirus' },
+];
+
 class Form extends React.Component {
     constructor(props) {
         super(props);

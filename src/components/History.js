@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { root } from '../config';
 
@@ -9,7 +9,7 @@ class History extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: null
         }
     }
 
@@ -33,50 +33,122 @@ class History extends React.Component {
     }
 
     render() {
-        const historyList = this.state.data.map((item) => {
-            return (
-                <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 15, marginBottom: 15 }}>
-                    <View style={{ flexDirection: 'column', flex: 1 }}>
-                        <View style={{ backgroundColor: '#0c25c9', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopLeftRadius: 7, borderTopRightRadius: 7 }}>
-                            <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>{item.destination}</Text>
-                            <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingRight: 8, marginTop: -20, textAlign: 'right' }}>{item.currentDate}</Text>
-                        </View>
-                        <View style={{ backgroundColor: '#394fe3', height: 160, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, borderBottomLeftRadius: 7 }}>
-                            <View style={{ marginHorizontal: 17, marginTop: 6 }}>
-                                <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1, fontWeight: 'bold' }}>{item.medicine}</Text>
-                                <Text style={{ fontSize: 14, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify', marginTop: 6 }}>{item.description}</Text>
-                            </View>
-                            <View style={{ flex: 1, justifyContent: "flex-end", marginBottom: 14 }}>
-                                <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify' }}>Pengiriman : {item.start}</Text>
-                                <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'justify', marginTop: 2 }}>Sampai : {item.finish}</Text>
-                            </View>
-                            <View style={{ flex: 1, flexDirection: 'column', justifyContent: "flex-end", marginBottom: 14, marginRight: -140 }}>
-                                <TouchableOpacity
-                                    style={{ flexDirection: "row" }}
-                                    onPress={() => this.deleteHistory(item)}
-                                >
-                                    <Icon name="trash" size={14} color='#fff' />
-                                    <Text style={{ fontSize: 12, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'right' }}>DELETE</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-
-                    </View>
-                </View>
-            )
-        })
-
+        const { data } = this.state;
         return (
             <>
-                {/* Title */}
                 <View style={{ alignItems: 'flex-start', marginTop: 20, marginLeft: 27 }}>
                     <Text style={{ fontSize: 28, color: '#000', fontFamily: 'Montserrat', letterSpacing: 1.2, fontWeight: 'bold' }}>History</Text>
                 </View>
-                {/* Histories */}
-                {historyList}
+                {
+                    data ?
+                        data.map(item =>
+                            <View style={styles.blockContainer}>
+                                <View style={{ flex: 1 }}>
+                                    <View style={styles.topPart}>
+                                        <Text style={styles.destination}>{item.destination}</Text>
+                                        <Text style={styles.date}>{item.currentDate}</Text>
+                                    </View>
+                                    <View style={styles.contentPart}>
+                                        <Text style={styles.medicineName}>{item.medicine}</Text>
+                                        <View style={styles.wrapper}>
+                                            <Text style={styles.start}>Pengiriman : {item.start}</Text>
+                                            <Text style={styles.finish}>Sampai : {item.finish}</Text>
+                                        </View>
+                                        <TouchableOpacity
+                                            style={styles.delete}
+                                            onPress={() => this.deleteHistory(item)}
+                                        >
+                                            <Icon name="trash" size={16} color='#fff' />
+                                            <Text style={{ fontSize: 14, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 2, textAlign: 'right' }}> DELETE</Text>
+                                        </TouchableOpacity>
+                                    </View>
+
+                                </View>
+                            </View>
+                        ) : <Text>Belum Ada History</Text>
+                }
+
             </>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    blockContainer: {
+        flexDirection: 'row',
+        marginHorizontal: 17,
+        marginTop: 15,
+        marginBottom: 15
+    },
+    topPart: {
+        backgroundColor: '#0c25c9',
+        height: 45,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginLeft: 2,
+        paddingHorizontal: 10,
+        borderTopLeftRadius: 7,
+        borderTopRightRadius: 7
+    },
+    destination: {
+        fontSize: 16,
+        color: '#fff',
+        letterSpacing: 1.8,
+        paddingLeft: 8
+    },
+    date: {
+        fontSize: 12,
+        color: '#fff',
+        letterSpacing: 1.8,
+        paddingRight: 8,
+    },
+    contentPart: {
+        backgroundColor: '#394fe3',
+        height: 160,
+        marginLeft: 2,
+        borderBottomRightRadius: 7,
+        borderBottomLeftRadius: 7,
+        paddingHorizontal: 18
+    },
+    medicineName: {
+        fontSize: 28,
+        color: '#fff',
+        letterSpacing: 1.2,
+        fontWeight: '600',
+        marginTop: 12
+    },
+    keterangan: {
+        fontSize: 16,
+        color: '#fff',
+        textAlign: 'justify',
+        letterSpacing: 1.5
+    },
+    wrapper: {
+        position: 'absolute',
+        bottom: 12,
+        marginLeft: 20
+    },
+    start: {
+        fontSize: 12,
+        color: '#fff',
+        letterSpacing: 2,
+        textAlign: 'justify'
+    },
+    finish: {
+        fontSize: 12,
+        color: '#fff',
+        letterSpacing: 2,
+        textAlign: 'justify',
+        marginTop: 2
+    },
+    delete: {
+        position: 'absolute',
+        right: 20,
+        bottom: 12,
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
+})
 
 export default History;

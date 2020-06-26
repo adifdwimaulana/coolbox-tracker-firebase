@@ -100,28 +100,6 @@ class Map extends React.Component {
                                 strokeColor="hotpink"
                             /> : null}
                 </MapView>
-                <GooglePlacesAutocomplete
-                    placeholder='Lokasi Tujuan'
-                    minLength={2}
-                    autoFocus={false}
-                    fetchDetails
-                    listViewDisplayed='auto'
-                    query={{
-                        key: API_KEY,
-                        language: 'id',
-                        types: 'geocode',
-                    }}
-                    currentLocation={false}
-                    onPress={(data, details = null) => {
-                        const region = {
-                            latitude: details.geometry.location.lat,
-                            longitude: details.geometry.location.lng,
-                            latitudeDelta: 0.00922 * 1.5,
-                            longitudeDelta: 0.00421 * 1.5
-                        };
-                        this.onRegionChange(region);
-                    }}
-                />
             </>
         );
     };
