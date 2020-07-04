@@ -42,6 +42,7 @@ class Form extends React.Component {
     componentDidMount() {
         root.ref('/isFinish').on('value', (snap) => {
             console.log(snap.val());
+            this.setState({ isFinish: snap.val().bool })
         });
     }
 

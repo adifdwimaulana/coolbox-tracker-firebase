@@ -175,7 +175,7 @@ class Data extends React.Component {
                                 </View>
                             </View>
                         </View> : evaporator ? <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
-                            <View style={{ backgroundColor: '#a75fd4', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6, marginBottom: 30 }}>
+                            <View style={{ backgroundColor: '#a75fd4', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
                             </View>
                             <View style={{ flexDirection: 'column', flex: 1 }}>
                                 <View style={{ backgroundColor: '#5d128c', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
@@ -199,21 +199,18 @@ class Data extends React.Component {
 
                 {
                     info ? <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
-                        <View style={{ backgroundColor: '#56dae3', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6, marginBottom: 30 }}>
+                        <View style={{ backgroundColor: '#0eaab5', height: 205, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6, marginBottom: 30 }}>
                         </View>
                         <View style={{ flexDirection: 'column', flex: 1 }}>
-                            <View style={{ backgroundColor: '#0eaab5', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
+                            <View style={{ backgroundColor: '#097a82', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
                                 <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Info Obat</Text>
                             </View>
-                            <View style={{ backgroundColor: '#56dae3', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <Icon name="thermometer" size={24} color='#fff' />
-                                        <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
-                                    </View>
-                                    <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
-                                        {data.tempC} C
-                        </Text>
+                            <View style={{ backgroundColor: '#0eaab5', height: 160, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, alignItems: 'center' }}>
+                                <View style={{ justifyContent: 'flex-start', marginHorizontal: 16 }}>
+                                    <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat' }}>Obat: {info.medicine.name}</Text>
+                                    <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat' }}>Suhu Maksimal : {info.medicine.max} C</Text>
+                                    <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat' }}>Suhu Minimal : {info.medicine.min} C</Text>
+                                    <Text style={{ fontSize: 16, color: '#fff', fontFamily: 'Montserrat' }}>Tujuan : {info.destination.name}</Text>
                                 </View>
                             </View>
                         </View>
