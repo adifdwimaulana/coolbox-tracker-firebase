@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapViewDirections from 'react-native-maps-directions';
 import { root } from '../config';
 
@@ -11,8 +10,9 @@ class Map extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
             destination: null,
+            origin: null,
+            region: null,
             showDestination: false,
             showDirection: false
         };
@@ -21,49 +21,59 @@ class Map extends React.Component {
     componentDidMount() {
         root.ref('/location').on('value', (snap) => {
             console.log(snap.val());
-            this.setState({
-                data: snap.val()
-            })
-        });
-    }
+            let data = snap.val()
+            const currentOrigin = {
+                latitude: data.latitude,
+                longitude: data.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421
+            }
 
-    onRegionChange(region) {
-        this.setState({
-            destination: region,
-            showDestination: true,
-            showDirection: true
+            const currentCoordinate = {
+                latitude: data.latitude,
+                longitude: data.longitude
+            }
+
+            const origin = Object.create(currentOrigin)
+            const coordinate = Object.create(currentCoordinate)
+
+            this.setState({ region: origin, origin: coordinate })
+        });
+
+        root.ref('/isFinish').on('value', (snap) => {
+            let data = snap.val()
+            if (data.bool == false) {
+                this.setState({ showDestination: false, showDirection: false })
+            } else {
+                let latitude = data.destination.lat
+                let longitude = data.destination.long
+                const coordinate = {
+                    latitude,
+                    longitude
+                }
+
+                const destination = Object.create(coordinate)
+
+                this.setState({ destination: destination, showDestination: true, showDirection: true })
+            }
         })
     }
 
     render() {
-        const { data, destination, showDestination, showDirection } = this.state;
-        if (data == null) {
+        const { region, origin, destination, showDestination, showDirection } = this.state;
+        if (origin == null) {
             return null;
         }
         return (
             <>
 
                 <MapView
-                    region={{
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        latitudeDelta: 0.045,
-                        longitudeDelta: 0.045
-                    }}
-                    // onRegionChange={{
-                    //     latitude: data.latitude,
-                    //     longitude: data.longitude,
-                    //     latitudeDelta: 0.045,
-                    //     longitudeDelta: 0.045
-                    // }}
+                    region={region}
                     // onRegionChange={this.onChane(region)}
                     style={{ flex: 1, ...StyleSheet.absoluteFillObject }}
                 >
                     <Marker
-                        coordinate={{
-                            latitude: data.latitude,
-                            longitude: data.longitude
-                        }}
+                        coordinate={origin}
                         title={"Tracker"}
                         description={"Cool Box Current Location"}
                     >
@@ -75,10 +85,7 @@ class Map extends React.Component {
                     {
                         showDestination ?
                             <Marker
-                                coordinate={{
-                                    latitude: destination.latitude,
-                                    longitude: destination.longitude,
-                                }}
+                                coordinate={destination}
                                 title={"Tujuan Anda"}
                             >
 
@@ -87,14 +94,8 @@ class Map extends React.Component {
                     {
                         showDirection ?
                             <MapViewDirections
-                                origin={{
-                                    latitude: data.latitude,
-                                    longitude: data.longitude
-                                }}
-                                destination={{
-                                    latitude: destination.latitude,
-                                    longitude: destination.longitude,
-                                }}
+                                origin={origin}
+                                destination={destination}
                                 apikey={API_KEY}
                                 strokeWidth={3}
                                 strokeColor="hotpink"

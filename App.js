@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -14,7 +14,9 @@ console.disableYellowBox = true;
 class HomeScreen extends React.Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView
+        keyboardShouldPersistTaps='always'
+        style={styles.container}>
         <Data />
       </ScrollView>
     )
@@ -34,7 +36,10 @@ class MapScreen extends React.Component {
 class FormScreen extends React.Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView
+        keyboardShouldPersistTaps='always'
+        style={styles.container}
+      >
         <Form />
       </ScrollView>
     )

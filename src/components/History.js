@@ -45,11 +45,11 @@ class History extends React.Component {
                             <View style={styles.blockContainer}>
                                 <View style={{ flex: 1 }}>
                                     <View style={styles.topPart}>
-                                        <Text style={styles.destination}>{item.destination}</Text>
+                                        <Text style={styles.destination}>{item.destination.name}</Text>
                                         <Text style={styles.date}>{item.currentDate}</Text>
                                     </View>
                                     <View style={styles.contentPart}>
-                                        <Text style={styles.medicineName}>{item.medicine}</Text>
+                                        <Text style={styles.medicineName}>{item.medicine.name}</Text>
                                         <View style={styles.wrapper}>
                                             <Text style={styles.start}>Pengiriman : {item.start}</Text>
                                             <Text style={styles.finish}>Sampai : {item.finish}</Text>
@@ -65,9 +65,8 @@ class History extends React.Component {
 
                                 </View>
                             </View>
-                        ) : <Text>Belum Ada History</Text>
+                        ) : <Text style={{ fontSize: 32, color: '#bbb', fontWeight: '700', textAlign: 'center', marginTop: 100 }}>Belum Ada History</Text>
                 }
-
             </>
         )
     }
