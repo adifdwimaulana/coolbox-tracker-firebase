@@ -17,9 +17,8 @@ const currentDate = date + '-' + month + '-' + year;
 
 const sensors = [
     { id: 1, name: 'Ruangan' },
-    { id: 2, name: 'Compressor' },
-    { id: 3, name: 'Condensor' },
-    { id: 4, name: 'Evaporator' },
+    { id: 2, name: 'Condensor' },
+    { id: 3, name: 'Evaporator' },
 ];
 
 class Data extends React.Component {
@@ -30,7 +29,6 @@ class Data extends React.Component {
             data: null,
             ruangan: false,
             condensor: false,
-            compressor: false,
             evaporator: false
         };
     };
@@ -58,18 +56,16 @@ class Data extends React.Component {
         console.log(item)
         let id = item.id
         if (id == 1) {
-            this.setState({ ruangan: true, condensor: false, compressor: false, evaporator: false })
+            this.setState({ ruangan: true, condensor: false, evaporator: false })
         } else if (id == 2) {
-            this.setState({ ruangan: false, condensor: false, compressor: true, evaporator: false })
+            this.setState({ ruangan: false, condensor: true, evaporator: false })
         } else if (id == 3) {
-            this.setState({ ruangan: false, condensor: false, compressor: false, evaporator: false })
-        } else if (id == 4) {
-            this.setState({ ruangan: fasle, condensor: false, compressor: false, evaporator: true })
+            this.setState({ ruangan: false, condensor: false, evaporator: true })
         }
     }
 
     render() {
-        const { data, ruangan, compressor, condensor, evaporator, info } = this.state;
+        const { data, ruangan, condensor, evaporator, info } = this.state;
         if (data == null) {
             return null;
         }
@@ -136,64 +132,91 @@ class Data extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                        </View> : compressor ? <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
-                            <View style={{ backgroundColor: '#bd3787', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
-                            </View>
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
-                                <View style={{ backgroundColor: '#910f5d', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
-                                    <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Compressor</Text>
-                                </View>
-                                <View style={{ backgroundColor: '#bd3787', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <Icon name="thermometer" size={24} color='#fff' />
-                                            <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                        </View> : condensor ?
+                            <View>
+                                <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
+                                    <View style={{ backgroundColor: '#bd3787', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
+                                    </View>
+                                    <View style={{ flexDirection: 'column', flex: 1 }}>
+                                        <View style={{ backgroundColor: '#910f5d', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
+                                            <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Input Condensor</Text>
                                         </View>
-                                        <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
-                                            {data.tempA} C
+                                        <View style={{ backgroundColor: '#bd3787', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                    <Icon name="thermometer" size={24} color='#fff' />
+                                                    <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                                                </View>
+                                                <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
+                                                    {data.tempA} C
                                 </Text>
+                                            </View>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                        </View> : condensor ? <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
-                            <View style={{ backgroundColor: '#42a679', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
-                            </View>
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
-                                <View style={{ backgroundColor: '#0c633c', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
-                                    <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Condensor</Text>
-                                </View>
-                                <View style={{ backgroundColor: '#42a679', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <Icon name="thermometer" size={24} color='#fff' />
-                                            <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                                <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
+                                    <View style={{ backgroundColor: '#bd3787', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
+                                    </View>
+                                    <View style={{ flexDirection: 'column', flex: 1 }}>
+                                        <View style={{ backgroundColor: '#910f5d', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
+                                            <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Output Condensor</Text>
                                         </View>
-                                        <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
-                                            {data.tempB} C
-                                </Text>
+                                        <View style={{ backgroundColor: '#bd3787', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                    <Icon name="thermometer" size={24} color='#fff' />
+                                                    <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                                                </View>
+                                                <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
+                                                    {data.tempB} C
+                            </Text>
+                                            </View>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                        </View> : evaporator ? <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
-                            <View style={{ backgroundColor: '#a75fd4', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
-                            </View>
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
-                                <View style={{ backgroundColor: '#5d128c', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
-                                    <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Evaporator</Text>
-                                </View>
-                                <View style={{ backgroundColor: '#a75fd4', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <Icon name="thermometer" size={24} color='#fff' />
-                                            <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                            </View> : evaporator ?
+                                <View>
+                                    <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
+                                        <View style={{ backgroundColor: '#a75fd4', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
                                         </View>
-                                        <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
-                                            {data.tempC} C
+                                        <View style={{ flexDirection: 'column', flex: 1 }}>
+                                            <View style={{ backgroundColor: '#5d128c', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
+                                                <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Input Evaporator</Text>
+                                            </View>
+                                            <View style={{ backgroundColor: '#a75fd4', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
+                                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                        <Icon name="thermometer" size={24} color='#fff' />
+                                                        <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                                                    </View>
+                                                    <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
+                                                        {data.tempC} C
                                 </Text>
+                                                </View>
+                                            </View>
+                                        </View>
                                     </View>
-                                </View>
-                            </View>
-                        </View> : <Text style={{ fontSize: 32, color: '#bbb', fontWeight: '700', textAlign: 'center', marginTop: 100 }}>Pilih Lokasi Sensor</Text>
+                                    <View style={{ flexDirection: 'row', marginHorizontal: 17, marginTop: 30 }}>
+                                        <View style={{ backgroundColor: '#a75fd4', height: 165, paddingTop: 8, paddingLeft: 10, borderTopLeftRadius: 7, borderBottomLeftRadius: 7, width: 10, elevation: 6 }}>
+                                        </View>
+                                        <View style={{ flexDirection: 'column', flex: 1 }}>
+                                            <View style={{ backgroundColor: '#5d128c', height: 45, paddingTop: 8, marginLeft: 2, paddingHorizontal: 10, borderTopRightRadius: 7, elevation: 6 }}>
+                                                <Text style={{ fontSize: 20, color: '#fff', fontFamily: 'Montserrat', letterSpacing: 1.8, paddingLeft: 8 }}>Output Evaporator</Text>
+                                            </View>
+                                            <View style={{ backgroundColor: '#a75fd4', height: 120, marginLeft: 2, flexDirection: 'row', borderBottomRightRadius: 7, elevation: 6, justifyContent: 'center' }}>
+                                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                        <Icon name="thermometer" size={24} color='#fff' />
+                                                        <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Montserrat', marginRight: 15 }}> Suhu</Text>
+                                                    </View>
+                                                    <Text style={{ fontSize: 28, color: '#fff', fontFamily: 'Montserrat', textAlign: 'center', fontWeight: '700', marginLeft: 15 }}>
+                                                        {data.tempD} C
+                                </Text>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View> : <Text style={{ fontSize: 32, color: '#bbb', fontWeight: '700', textAlign: 'center', marginTop: 100 }}>Pilih Lokasi Sensor</Text>
 
                 }
 
