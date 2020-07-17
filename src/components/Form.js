@@ -11,6 +11,8 @@ const hospitals = [
     { id: 5, name: 'RS Mitra Keluarga Kenjeran' },
     { id: 6, name: 'RS Mitra Keluarga Surabaya' },
     { id: 7, name: 'RSAL Surabaya' },
+    { id: 8, name: 'RS Azra Bogor' },
+    { id: 9, name: 'RS PMI Bogor' },
 ];
 
 const medicines = [
@@ -42,7 +44,7 @@ class Form extends React.Component {
     componentDidMount() {
         root.ref('/isFinish').on('value', (snap) => {
             console.log(snap.val());
-            this.setState({ isFinish: snap.val().bool })
+            this.setState({ isFinish: snap.val().bool, medicine: snap.val().medicine, start: snap.val().start, destination: snap.val().destination })
         });
     }
 
